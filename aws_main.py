@@ -1,9 +1,7 @@
 import pandas as pd
-import numpy as np
 import urllib.request as urlrq
 import certifi
 import ssl
-import requests
 
 
 m1 = urlrq.urlopen('https://www.dropbox.com/s/eaxj3paf2wabeeo/covid-containing-subpages_aws.csv?dl=1', context=ssl.create_default_context(cafile=certifi.where()))
