@@ -14,4 +14,4 @@ df1 = pd.read_csv('https://www.dropbox.com/s/eaxj3paf2wabeeo/covid-containing-su
 
 
 # df = pd.concat([df1, df2])
-# print('HELLOO', len(df))
+print('HELLOO', df1)
