@@ -12,8 +12,11 @@ import pandas as pd
 df1 = pd.read_csv('test.csv')
 df2 = pd.read_csv('other_test.csv')
 df = pd.concat([df1, df2])
-df = df.drop_duplicates(subset=['url', 'url_host_name', 'url_host_registered_domain'], keep='first')
-df.to_csv('concatenated.csv')
+del df1
+del df2
+df_new = df.drop_duplicates(subset=['url', 'url_host_name', 'url_host_registered_domain'], keep='first')
+del df
+df_new.to_csv('concatenated.csv')
 # df2 = pd.read_csv('/Users/parnianshahkar/Documents/KOF/Task 15/top10subpages_aws.csv')
 # df2 = pd.read_csv('https://www.dropbox.com/s/5y205ipwntazbsi/top10subpages_aws.csv?dl=1')[:100]
 
