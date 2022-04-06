@@ -21,4 +21,4 @@ df_new.to_csv('concatenated.csv')
 # df2 = pd.read_csv('https://www.dropbox.com/s/5y205ipwntazbsi/top10subpages_aws.csv?dl=1')[:100]
 
 
-print('len(df1) + len(df2)', len(df1) + len(df2), '\n len(concatenated)', len(df))
+print('len(df1) + len(df2)', len(df1) + len(df2), '\n len(concatenated)', len(df_new))
