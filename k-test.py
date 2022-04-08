@@ -33,7 +33,7 @@ def read_doc(record, parser=get_text_selectolax):
 
     return text
 
-df = pd.read_csv('concatenated.csv')[:1000]
+df = pd.read_csv('test_concatenated.csv')
 
 
 # df should have these columns: ['warc_filename, warc_record_offset, warc_record_end']
