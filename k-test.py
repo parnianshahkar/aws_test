@@ -5,7 +5,7 @@ import boto3
 import multiprocessing as mp # can use this if you need to parallelise
 from warcio.archiveiterator import ArchiveIterator
 from selectolax.parser import HTMLParser
-import s3
+# import s3
 
 df = pd.read_csv('test_concatenated.csv')
 
