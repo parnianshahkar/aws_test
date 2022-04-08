@@ -33,7 +33,7 @@ def read_doc(record, parser=get_text_selectolax):
 
     return text
 
-df = pd.read_csv('test_concatenated.csv')
+df = pd.read_csv('concatenated.csv')[:1000]
 
 
 # df should have these columns: ['warc_filename, warc_record_offset, warc_record_end']
@@ -63,12 +63,15 @@ print(lst)
 
 my_df = pd.DataFrame(list(zip(df['url'], df['url_host_name'], df['crawl'], lst)),
                      columns=['url', 'url_host_name', 'crawl', 'text'])
-my_df.to_csv('subpages_separately.csv.gzip', header=False, compression='gzip')  # saving compressed file or we can overload memory
-
+# my_df.to_csv('subpages_separately.csv.gzip', header=False, compression='gzip')  # saving compressed file or we can overload memory
+del lst
+del df
 my_df_2 = my_df.groupby(['url_host_name'])['text'].apply(
     ';'.join).reset_index()  # pivoting it so we have all text by website
 my_df_2.to_csv('commoncrawl_test.csv.gz', header=False, compression='gzip')  # saving compressed file or we can overload memory
 print('finished one!')
 del my_df
-del lst
+del my_df_2
+
+
 
