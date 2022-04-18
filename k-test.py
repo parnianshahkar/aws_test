@@ -55,15 +55,15 @@ def func(row):
             # print("parser output")
             out_lst.append(read_doc(a))
 
-    return out_lst
+    string_format = '\n'.join(out_lst)
+    return string_format
 
 df['text'] = df.apply(lambda row: func(row), axis = 1)
 
 df = df[['url', 'url_host_name', 'crawl', 'text']]
 df.to_csv('subpages_test.csv.gzip', header=False, compression='gzip')  # saving compressed file or we can overload memory
 print(df)
-my_df = df.groupby(['url_host_name'])['text'].apply(
-    ';'.join).reset_index()  # pivoting it so we have all text by website
+my_df = df.groupby(['url_host_name'])['text'].apply(';'.join).reset_index()  # pivoting it so we have all text by website
 my_df.to_csv('hostname_test.csv.gz', header=False, compression='gzip')  # saving compressed file or we can overload memory
 print('finished one!')
 print(my_df)
