@@ -34,7 +34,7 @@ def read_doc(record, parser=get_text_selectolax):
 
     return text
 
-df = pd.read_csv('top10urls.csv', nrows = 1000)
+df = pd.read_csv('top10urls.csv', nrows = 10000)
 
 
 root_key = pd.read_csv('rootkey_p.csv')
@@ -59,7 +59,7 @@ def func(row):
     string_format = '\n'.join(out_lst)
     return string_format
 
-starttime = timeit.default_timer()
+starttime = timeit.default_timer() #### Time in microsecond
 df['text'] = df.apply(lambda row: func(row), axis = 1)
 print("Number of subpages crawled:", len(df), "The time difference is :", timeit.default_timer() - starttime)
 
