@@ -36,7 +36,7 @@ def read_doc(record, parser=get_text_selectolax):
 df = pd.read_csv('test_concatenated.csv')
 
 variables = {}
-with open("access_info.txt") as f:
+with open("access_info.txt?dl=0") as f:
     for line in f:
         print('bbbb', line)
         name, value = line.split("=")
