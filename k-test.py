@@ -34,11 +34,11 @@ def read_doc(record, parser=get_text_selectolax):
 
     return text
 
-df = pd.read_csv('test_concatenated.csv')
+df = pd.read_csv('top10urls.csv')
 
 
 root_key = pd.read_csv('rootkey_p.csv')
-print(root_key)
+# print(root_key)
 # df should have these columns: ['warc_filename, warc_record_offset, warc_record_end']
 s3 = boto3.client('s3', 'us-east-1',
                 aws_access_key_id=  root_key['AWSAccessKeyId'].iloc[0],
@@ -61,17 +61,18 @@ def func(row):
 
 starttime = timeit.default_timer()
 df['text'] = df.apply(lambda row: func(row), axis = 1)
-print("The time difference is :", timeit.default_timer() - starttime)
+print("Number of subpages crawled:", len(df), "The time difference is :", timeit.default_timer() - starttime)
 
 
 df = df[['url', 'url_host_name', 'crawl', 'text']]
 df.to_csv('subpages_test.csv.gzip', header=False, compression='gzip')  # saving compressed file or we can overload memory
-print(df)
+# print(df)
 my_df = df.groupby(['url_host_name'])['text'].apply(';'.join).reset_index()  # pivoting it so we have all text by website
 my_df.to_csv('hostname_test.csv.gz', header=False, compression='gzip')  # saving compressed file or we can overload memory
 print('finished one!')
-print(my_df)
-
+# print(my_df)
+del df
+del my_df
 
 ##################################################################################
 

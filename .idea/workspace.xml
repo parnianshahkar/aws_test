@@ -3,7 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="aa0db852-98a5-48ca-8957-e89569913e35" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/k-test.py" afterPath="$PROJECT_DIR$/k-test.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/kieran.py" afterPath="$PROJECT_DIR$/kieran.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -17,7 +16,7 @@
       <file leaf-file-name="k-test.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/k-test.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="393">
+            <state relative-caret-position="402">
               <caret line="64" column="0" lean-forward="true" selection-start-line="64" selection-start-column="0" selection-end-line="64" selection-end-column="0" />
               <folding>
                 <element signature="e#0#19#0" expanded="true" />
@@ -544,7 +543,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/k-test.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="393">
+        <state relative-caret-position="402">
           <caret line="64" column="0" lean-forward="true" selection-start-line="64" selection-start-column="0" selection-end-line="64" selection-end-column="0" />
           <folding>
             <element signature="e#0#19#0" expanded="true" />
