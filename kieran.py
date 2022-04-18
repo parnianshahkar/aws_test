@@ -111,3 +111,43 @@ s3 = boto3.client('s3', 'us-east-1',
                 aws_secret_access_key= 'YOUR KEY')
 
 save_chunk(df) # applying function to our df
+
+
+
+###### My older version:
+##################################################################################
+
+
+
+# list_of_responses = df.apply(lambda row: s3.get_object(Bucket='commoncrawl', Key=row['warc_filename'], Range='bytes=%s-%s' % (row['warc_record_offset'], row['warc_record_end']))['Body'], axis = 1)
+#
+# # list_of_responses = df.apply(lambda row: , axis = 1)
+#
+# lst = [None] * (len(list_of_responses))  # empty list to store results
+# for i in range(0, len(list_of_responses)):
+#     out_lst = []
+#     for record in ArchiveIterator(list_of_responses[i]):  # once we have the relevant part of the warc file, we need to go though it and parse it
+#         if record.rec_type == 'response':
+#             # lst[i] = read_doc(record)
+#             a = record.content_stream().read()
+#             # print("parser output")
+#             out_lst.append(read_doc(a))
+#     lst[i] = ';'.join(out_lst)  # now adding stuff to our list
+#
+# print(lst)
+#
+#
+#
+# my_df = pd.DataFrame(list(zip(df['url'], df['url_host_name'], df['crawl'], lst)),
+#                      columns=['url', 'url_host_name', 'crawl', 'text'])
+# # my_df.to_csv('subpages_separately.csv.gzip', header=False, compression='gzip')  # saving compressed file or we can overload memory
+# del lst
+# del df
+# my_df_2 = my_df.groupby(['url_host_name'])['text'].apply(
+#     ';'.join).reset_index()  # pivoting it so we have all text by website
+# my_df_2.to_csv('commoncrawl_test.csv.gz', header=False, compression='gzip')  # saving compressed file or we can overload memory
+# print('finished one!')
+# del my_df
+# del my_df_2
+#
+#
