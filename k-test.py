@@ -60,6 +60,8 @@ def func(row):
 df['text'] = df.apply(lambda row: func(row), axis = 1)
 
 print(df['text'])
+print(df.columns)
+
 ##################################################################################
 
 
