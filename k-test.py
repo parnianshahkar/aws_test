@@ -40,8 +40,8 @@ root_key = pd.read_csv('rootkey_p.csv')
 print(root_key)
 # df should have these columns: ['warc_filename, warc_record_offset, warc_record_end']
 s3 = boto3.client('s3', 'us-east-1',
-                aws_access_key_id=  variables['aws_access_key_id'],
-                aws_secret_access_key= variables['aws_secret_access_key'])
+                aws_access_key_id=  root_key['AWSAccessKeyId'].iloc[0],
+                aws_secret_access_key= root_key['AWSSecretKey'].iloc[0])
 
 
 list_of_responses = df.apply(lambda row: s3.get_object(Bucket='commoncrawl', Key=row['warc_filename'], Range='bytes=%s-%s' % (row['warc_record_offset'], row['warc_record_end']))['Body'], axis = 1)
