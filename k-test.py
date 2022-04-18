@@ -41,6 +41,7 @@ with open("access_info.txt") as f:
         print('bbbb', line)
         name, value = line.split("=")
         variables[name] = value
+print(variables)
 # df should have these columns: ['warc_filename, warc_record_offset, warc_record_end']
 s3 = boto3.client('s3', 'us-east-1',
                 aws_access_key_id=  variables['aws_access_key_id'],
