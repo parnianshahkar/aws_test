@@ -35,11 +35,15 @@ def read_doc(record, parser=get_text_selectolax):
 
 df = pd.read_csv('test_concatenated.csv')
 
-
+variables = {}
+with open("access_info.txt") as f:
+    for line in f:
+        name, value = line.split("=")
+        variables[name] = value
 # df should have these columns: ['warc_filename, warc_record_offset, warc_record_end']
 s3 = boto3.client('s3', 'us-east-1',
-                aws_access_key_id=  'AKIAWGCH75G4N4ZK57SE',
-                aws_secret_access_key= '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')
+                aws_access_key_id=  variables['aws_access_key_id'],
+                aws_secret_access_key= variables['aws_secret_access_key'])
 
 
 list_of_responses = df.apply(lambda row: s3.get_object(Bucket='commoncrawl', Key=row['warc_filename'], Range='bytes=%s-%s' % (row['warc_record_offset'], row['warc_record_end']))['Body'], axis = 1)
