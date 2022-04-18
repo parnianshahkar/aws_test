@@ -38,7 +38,7 @@ df = pd.read_csv('test_concatenated.csv')
 variables = {}
 with open("access_info.txt") as f:
     for line in f:
-        print(line)
+        print('bbbb', line)
         name, value = line.split("=")
         variables[name] = value
 # df should have these columns: ['warc_filename, warc_record_offset, warc_record_end']
