@@ -35,13 +35,9 @@ def read_doc(record, parser=get_text_selectolax):
 
 df = pd.read_csv('test_concatenated.csv')
 
-variables = {}
-with open("access_info.txt") as f:
-    for line in f:
-        print('bbbb', line)
-        name, value = line.split("=")
-        variables[name] = value
-print(variables)
+
+root_key = pd.read_csv('rootkey_p.csv')
+print(root_key)
 # df should have these columns: ['warc_filename, warc_record_offset, warc_record_end']
 s3 = boto3.client('s3', 'us-east-1',
                 aws_access_key_id=  variables['aws_access_key_id'],
