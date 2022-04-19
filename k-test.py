@@ -58,7 +58,11 @@ def func(row):
             out_lst.append(read_doc(a))
 
     string_format = '\n'.join(out_lst)
-    return string_format
+    paragraphs = string_format.split("\n")
+    nonempty_paragraphs = [paragraph for paragraph in paragraphs if len(paragraph) > 20]
+    covid_paragraphs = [paragraph for paragraph in nonempty_paragraphs if paragraph.contains("covid")]
+
+    return covid_paragraphs
 
 # starttime = timeit.default_timer() #### Time in microsecond
 starttime = time.time()
@@ -80,3 +84,5 @@ del my_df
 
 # paragraphs = text.split("\n")
 # covid_paragraphs = [paragraph for paragraph in paragraphs if paragraph.contains("covid")]
+
+nonempty_paragraphs = [paragraph for paragraph in paragraphs if len(paragraph) >20]
