@@ -68,7 +68,7 @@ print("Number of subpages crawled:", len(df), "The time difference is :", time.t
 
 df = df[['url', 'url_host_name', 'crawl', 'text']]
 df.to_csv('subpages_test.csv.gzip', header=False, compression='gzip')  # saving compressed file or we can overload memory
-# print(df)
+print(df)
 my_df = df.groupby(['url_host_name'])['text'].apply(';'.join).reset_index()  # pivoting it so we have all text by website
 my_df.to_csv('hostname_test.csv.gz', header=False, compression='gzip')  # saving compressed file or we can overload memory
 print('finished one!')
@@ -78,3 +78,5 @@ del my_df
 
 ##################################################################################
 
+# paragraphs = text.split("\n")
+# covid_paragraphs = [paragraph for paragraph in paragraphs if paragraph.contains("covid")]
