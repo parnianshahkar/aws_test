@@ -7,6 +7,7 @@ from warcio.archiveiterator import ArchiveIterator
 from selectolax.parser import HTMLParser
 import swifter
 import timeit
+import time
 
 
 def get_text_selectolax(html):
@@ -59,9 +60,10 @@ def func(row):
     string_format = '\n'.join(out_lst)
     return string_format
 
-starttime = timeit.default_timer() #### Time in microsecond
+# starttime = timeit.default_timer() #### Time in microsecond
+starttime = time.time()
 df['text'] = df.apply(lambda row: func(row), axis = 1)
-print("Number of subpages crawled:", len(df), "The time difference is :", timeit.default_timer() - starttime)
+print("Number of subpages crawled:", len(df), "The time difference is :", time.time() - starttime)
 
 
 df = df[['url', 'url_host_name', 'crawl', 'text']]
