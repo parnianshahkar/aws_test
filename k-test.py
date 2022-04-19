@@ -35,7 +35,7 @@ def read_doc(record, parser=get_text_selectolax):
 
     return text
 
-df = pd.read_csv('top10urls.csv', nrows = 1000)
+df = pd.read_csv('top10urls.csv', nrows = 100)
 
 
 root_key = pd.read_csv('rootkey_p.csv')
@@ -68,7 +68,7 @@ print("Number of subpages crawled:", len(df), "The time difference is :", time.t
 
 df = df[['url', 'url_host_name', 'crawl', 'text']]
 df.to_csv('subpages_test.csv.gzip', header=False, compression='gzip')  # saving compressed file or we can overload memory
-print(df)
+print(df['text'])
 my_df = df.groupby(['url_host_name'])['text'].apply(';'.join).reset_index()  # pivoting it so we have all text by website
 my_df.to_csv('hostname_test.csv.gz', header=False, compression='gzip')  # saving compressed file or we can overload memory
 print('finished one!')
