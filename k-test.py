@@ -78,6 +78,7 @@ df = df[['url', 'url_host_name', 'crawl', 'text']]
 df.to_csv('subpages_test.csv.gzip', header=False, compression='gzip')  # saving compressed file or we can overload memory
 df['covid_paragraphs'] = df.apply(lambda row: len(row['text']), axis = 1)
 print(df[['text', 'covid_paragraphs']])
+print(df[df['covid_paragraphs'] > 0])
 # my_df = df.groupby(['url_host_name'])['text'].apply(';'.join).reset_index()  # pivoting it so we have all text by website
 # my_df.to_csv('hostname_test.csv.gz', header=False, compression='gzip')  # saving compressed file or we can overload memory
 # print('finished one!')
@@ -86,8 +87,3 @@ del df
 # del my_df
 
 ##################################################################################
-
-# paragraphs = text.split("\n")
-# covid_paragraphs = [paragraph for paragraph in paragraphs if paragraph.contains("covid")]
-
-# nonempty_paragraphs = [paragraph for paragraph in paragraphs if len(paragraph) >20]
