@@ -85,12 +85,47 @@ def func(row):
 
     return covid_paragraphs
 
-# starttime = timeit.default_timer() #### Time in microsecond
+##################################################################################
+
+def new_func(row):
+    warc_filename, warc_record_offset, warc_record_end = row.split('(SPLITTER)')
+    obj = s3.get_object(Bucket='commoncrawl', Key=warc_filename, Range='bytes=%s-%s' % (warc_record_offset, warc_record_end))['Body']
+    out_lst = []
+    for record in ArchiveIterator(obj):  # once we have the relevant part of the warc file, we need to go though it and parse it
+        if record.rec_type == 'response':
+            # lst[i] = read_doc(record)
+            a = record.content_stream().read()
+            # print("parser output")
+            out_lst.append(read_doc(a))
+
+    string_format = '\n'.join(out_lst)
+    paragraphs = string_format.split("\n")
+    nonempty_paragraphs = [paragraph for paragraph in paragraphs if len(paragraph) > 2]
+    covid_paragraphs = [paragraph for paragraph in nonempty_paragraphs if any(ext.casefold() in paragraph.casefold() for ext in covid_synonyms)]
+    # string_format = '\n'.join(paragraphs)
+
+    return covid_paragraphs
+
+
+##################################################################################
+## Preprocessing + test
+
 starttime = time.time()
-df['text'] = df.apply(lambda row: func(row), axis = 1)
+df['input_variables'] = df.warc_filename + '(SPLITTER)' + df.warc_record_offset + '(SPLITTER)' + df.warc_record_end
+df['text'] = df['input_variables'].swifter.apply(lambda row: new_func(row))
 print("Number of subpages crawled:", len(df), "The time difference is :", time.time() - starttime)
 
 
+
+##################################################################################
+## Main Function
+
+# starttime = time.time()
+# df['text'] = df.apply(lambda row: func(row), axis = 1)
+# print("Number of subpages crawled:", len(df), "The time difference is :", time.time() - starttime)
+
+##################################################################################
+## Saving
 df = df[['url', 'url_host_name', 'crawl', 'text']]
 df.to_csv('subpages_test.csv.gzip', header=False, compression='gzip')  # saving compressed file or we can overload memory
 df['covid_paragraphs'] = df.apply(lambda row: len(row['text']), axis = 1)
