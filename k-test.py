@@ -70,7 +70,7 @@ def func(row):
 
 # starttime = timeit.default_timer() #### Time in microsecond
 starttime = time.time()
-df['text'] = df.swifter.apply(lambda row: func(row), axis = 1)
+df['text'] = df.apply(lambda row: func(row), axis = 1)
 print("Number of subpages crawled:", len(df), "The time difference is :", time.time() - starttime)
 
 
