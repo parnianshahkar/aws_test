@@ -55,7 +55,7 @@ def read_doc(record, parser=get_text_selectolax):
 
     return text
 
-df = pd.read_csv('covid_containing_urls.csv', nrows = 1000)
+df = pd.read_csv('covid_containing_urls.csv', nrows = 10000)
 
 
 root_key = pd.read_csv('rootkey_p.csv')
