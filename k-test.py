@@ -38,7 +38,7 @@ def read_doc(record, parser=get_text_selectolax):
 
     return text
 
-df = pd.read_csv('covid_containing_urls.csv', nrows = 10000)
+df = pd.read_csv('covid_containing_urls.csv', nrows = 1000)
 
 
 root_key = pd.read_csv('rootkey_p.csv')
@@ -63,7 +63,7 @@ def func(row):
     string_format = '\n'.join(out_lst)
     paragraphs = string_format.split("\n")
     nonempty_paragraphs = [paragraph for paragraph in paragraphs if len(paragraph) > 2]
-    covid_paragraphs = [paragraph for paragraph in nonempty_paragraphs if any(ext in paragraph for ext in covid_synonyms)]
+    covid_paragraphs = [paragraph for paragraph in nonempty_paragraphs if any(ext.casefold() in paragraph.casefold() for ext in covid_synonyms)]
     # string_format = '\n'.join(paragraphs)
 
     return covid_paragraphs
@@ -87,3 +87,11 @@ del df
 # del my_df
 
 ##################################################################################
+
+# df['input_variables'] = df.warc_filename + ',' + df.warc_record_offset + ','
+# df['input_variables'] = df.input_variables.split(',')
+# warc_filename, warc_record_offset, … = input_list
+# Or make a dictionary of other columns in a new column
+
+# Use proper Covid synonym list and make case INsensitive
+# Try to make swifter work using one column that contains all input variables
