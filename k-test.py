@@ -38,7 +38,7 @@ def read_doc(record, parser=get_text_selectolax):
 
     return text
 
-df = pd.read_csv('covid_containing_urls.csv', nrows = 1000)
+df = pd.read_csv('covid_containing_urls.csv', nrows = 100)
 
 
 root_key = pd.read_csv('rootkey_p.csv')
@@ -63,9 +63,8 @@ def func(row):
     string_format = '\n'.join(out_lst)
     paragraphs = string_format.split("\n")
     nonempty_paragraphs = [paragraph for paragraph in paragraphs if len(paragraph) > 20]
-    # covid_paragraphs = [paragraph for paragraph in nonempty_paragraphs if "covid" in paragraph]
-    covid_paragraphs = [paragraph for paragraph in nonempty_paragraphs if any(ext in paragraph for ext in covid_synonyms)]
-    string_format = '\n'.join(covid_paragraphs)
+    # covid_paragraphs = [paragraph for paragraph in nonempty_paragraphs if any(ext in paragraph for ext in covid_synonyms)]
+    string_format = '\n'.join(nonempty_paragraphs)
 
     return string_format
 
