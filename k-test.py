@@ -110,10 +110,10 @@ def new_func(row):
 ##################################################################################
 ## Preprocessing + test
 
-# starttime = time.time()
-# df['input_variables'] = df.warc_filename + '(SPLITTER)' + df.warc_record_offset.apply(str) + '(SPLITTER)' + df.warc_record_end.apply(str)
-# df['text'] = df['input_variables'].swifter.apply(lambda row: new_func(row))
-# print("Number of subpages crawled:", len(df), "The time difference is :", time.time() - starttime)
+starttime = time.time()
+df['input_variables'] = df.warc_filename + '(SPLITTER)' + df.warc_record_offset.apply(str) + '(SPLITTER)' + df.warc_record_end.apply(str)
+df['text'] = df['input_variables'].swifter.apply(lambda row: new_func(row))
+print("Number of subpages crawled:", len(df), "The time difference is :", time.time() - starttime)
 
 
 
