@@ -116,13 +116,12 @@ df['text'] = df['input_variables'].swifter.apply(lambda row: new_func(row))
 print("Number of subpages crawled:", len(df), "The time difference is :", time.time() - starttime)
 
 
-
 ##################################################################################
 ## Main Function
 
-starttime = time.time()
-df['text'] = df.apply(lambda row: func(row), axis = 1)
-print("Number of subpages crawled:", len(df), "The time difference is :", time.time() - starttime)
+# starttime = time.time()
+# df['text'] = df.apply(lambda row: func(row), axis = 1)
+# print("Number of subpages crawled:", len(df), "The time difference is :", time.time() - starttime)
 
 ##################################################################################
 ## Saving
