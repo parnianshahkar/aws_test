@@ -62,7 +62,7 @@ def func(row):
 
     string_format = '\n'.join(out_lst)
     paragraphs = string_format.split("\n")
-    nonempty_paragraphs = [paragraph for paragraph in paragraphs if len(paragraph) > 20]
+    nonempty_paragraphs = [paragraph for paragraph in paragraphs if len(paragraph) > 2]
     # covid_paragraphs = [paragraph for paragraph in nonempty_paragraphs if any(ext in paragraph for ext in covid_synonyms)]
     string_format = '\n'.join(nonempty_paragraphs)
 
