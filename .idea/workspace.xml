@@ -16,8 +16,8 @@
       <file leaf-file-name="k-test.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/k-test.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="176">
-              <caret line="64" column="86" lean-forward="false" selection-start-line="64" selection-start-column="86" selection-end-line="64" selection-end-column="86" />
+            <state relative-caret-position="236">
+              <caret line="68" column="24" lean-forward="true" selection-start-line="68" selection-start-column="24" selection-end-line="68" selection-end-column="24" />
               <folding>
                 <element signature="e#0#19#0" expanded="true" />
               </folding>
@@ -494,8 +494,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/k-test.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="176">
-          <caret line="64" column="86" lean-forward="false" selection-start-line="64" selection-start-column="86" selection-end-line="64" selection-end-column="86" />
+        <state relative-caret-position="236">
+          <caret line="68" column="24" lean-forward="true" selection-start-line="68" selection-start-column="24" selection-end-line="68" selection-end-column="24" />
           <folding>
             <element signature="e#0#19#0" expanded="true" />
           </folding>
