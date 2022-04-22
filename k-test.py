@@ -61,7 +61,7 @@ def func(row):
             out_lst.append(read_doc(a))
 
     string_format = '\n'.join(out_lst)
-    paragraphs = string_format.split("\n")
+    # paragraphs = string_format.split("\n")
     # nonempty_paragraphs = [paragraph for paragraph in paragraphs if len(paragraph) > 2]
     # covid_paragraphs = [paragraph for paragraph in nonempty_paragraphs if any(ext in paragraph for ext in covid_synonyms)]
     # string_format = '\n'.join(paragraphs)
@@ -76,7 +76,7 @@ print("Number of subpages crawled:", len(df), "The time difference is :", time.t
 
 df = df[['url', 'url_host_name', 'crawl', 'text']]
 df.to_csv('subpages_test.csv.gzip', header=False, compression='gzip')  # saving compressed file or we can overload memory
-print(df[~df['text'].notna()])
+print(df['text'])
 # my_df = df.groupby(['url_host_name'])['text'].apply(';'.join).reset_index()  # pivoting it so we have all text by website
 # my_df.to_csv('hostname_test.csv.gz', header=False, compression='gzip')  # saving compressed file or we can overload memory
 # print('finished one!')
