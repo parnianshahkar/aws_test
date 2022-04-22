@@ -76,7 +76,8 @@ print("Number of subpages crawled:", len(df), "The time difference is :", time.t
 
 df = df[['url', 'url_host_name', 'crawl', 'text']]
 df.to_csv('subpages_test.csv.gzip', header=False, compression='gzip')  # saving compressed file or we can overload memory
-print(df['text'])
+df['covid_containing_paragraphs'] = df['text'].apply(lambda row: len(row['text']), axis = 1)
+print(df[['text', 'covid_containing_paragraphs']])
 # my_df = df.groupby(['url_host_name'])['text'].apply(';'.join).reset_index()  # pivoting it so we have all text by website
 # my_df.to_csv('hostname_test.csv.gz', header=False, compression='gzip')  # saving compressed file or we can overload memory
 # print('finished one!')
