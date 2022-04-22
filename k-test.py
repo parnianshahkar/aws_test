@@ -61,12 +61,12 @@ def func(row):
             out_lst.append(read_doc(a))
 
     string_format = '\n'.join(out_lst)
-    # paragraphs = string_format.split("\n")
-    # nonempty_paragraphs = [paragraph for paragraph in paragraphs if len(paragraph) > 2]
+    paragraphs = string_format.split("\n")
+    nonempty_paragraphs = [paragraph for paragraph in paragraphs if len(paragraph) > 2]
     # covid_paragraphs = [paragraph for paragraph in nonempty_paragraphs if any(ext in paragraph for ext in covid_synonyms)]
     # string_format = '\n'.join(paragraphs)
 
-    return string_format
+    return nonempty_paragraphs
 
 # starttime = timeit.default_timer() #### Time in microsecond
 starttime = time.time()
