@@ -3,7 +3,10 @@
 
 **athena_lookup.py**: \
 Purpose: This file takes a list of website addresses as its input and crawls the urls for the selected timeframe from common crawl. Then it outputs the address of subpages that contain specific keywords and the n shortest urls for each website address, where the specific keywords and n are determined by user. \
-Input example: no www. before. \
+Input example: 
+![alt ](path-to-image-here)
+
+**Warning:** urls should not contain "https" or "www." upfront. \
 Code explanation: The main function that is executed in the Athena_lookup class is the run_lookup(self) function. This function calls some other important functions. The description for the tasks of each function is as following: \
 drop_all_tables(self): This function drops tables if there exists any. \
 create_url_list_table(self): This function creates a new table from the input file, with columns "websiteaddress" and "bvdidnumber".\
