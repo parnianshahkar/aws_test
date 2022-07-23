@@ -19,13 +19,13 @@ This file takes a list of website addresses as its input and crawls the urls for
 
 **Code explanation**
 
-The main function that is executed in the Athena_lookup class is the run_lookup(self) function. This function calls some other important functions. The description for the tasks of each function is as following: 
-* drop_all_tables(self): This function drops tables if there exists any. 
-* create_url_list_table(self): This function creates a new table from the input file, with columns "websiteaddress" and "bvdidnumber".
-* create_ccindex_table(self): This function creates a large table by selecting some columns from the original common crawl database.
-* repair_ccindex_table(self): This function is used to make Athena recognize the data partitions on S3. 
-* inner_join(self): This function merges the two tables created through create_ccindex_table(self) and create_url_list_table(self) functions on url. The resulting table contains the address of all the historical subpages of the urls in the input file, for the selected timeframe.   
-* select_subpages(self): The merged table created through the inner_join(self) function is very large. Therefore, we only select the subpages that contain a specific keyword in their website address, and the n_subpages shortest urls. n_subpages is an integer number and is one of the parameters that is determined by the user. For example, if "covid" is in the url_keywords list, the following url will be selected because it contains one of the keywords:'siemens.de/covid-19'. 
+The main function that is executed in the Athena_lookup class is the run_lookup function. This function calls some other important functions. The description for the tasks of each function is as following: 
+* drop_all_tables: This function clears previous results if there exists any. 
+* create_url_list_table: This function creates a new table from the input file, with columns "websiteaddress" and "bvdidnumber".
+* create_ccindex_table: This function creates a large table by selecting some columns from the original common crawl database.
+* repair_ccindex_table: This function is used to make Athena recognize the data partitions on S3. 
+* inner_join: This function merges the two tables created through create_ccindex_table(self) and create_url_list_table(self) functions on url. The resulting table contains the address of all the historical subpages of the urls in the input file, for the selected timeframe.   
+* select_subpages: The merged table created through the inner_join(self) function is very large. Therefore, we only select the subpages that contain a specific keyword in their website address, and the n_subpages shortest urls. n_subpages is an integer number and is one of the parameters that is determined by the user. For example, if "covid" is in the url_keywords list, the following url will be selected because it contains one of the keywords:'siemens.de/covid-19'. 
 
 *Output example:*\
 ![alt ](output1.png)
