@@ -14,7 +14,7 @@ This file takes a list of website addresses as its input and crawls the urls for
 **Parameters** </font> 
 * n_subpages: number of shortest subpages that are selected for each website address in the output table. 
 * url_keywords: list of keywords that if any of them exists in a url address, that url is selected in the output table. 
-* crawl: this parameter determines the desired timeframe. Once the desired months for the analysis are determined, using [this website](https://skeptric.com/common-crawl-time-ranges/), one can find the common crawl time range for each month. By putting together these time ranges in the following format, this parameter is constructed: (... OR crawl = 'CC-MAIN-2020-24' OR crawl = 'CC-MAIN-2020-50')
+* crawl: this parameter determines the desired timeframe. Once the desired time period for the analysis is determined, using [this website](https://skeptric.com/common-crawl-time-ranges/), one can find the common crawl time ranges. By putting together these time ranges in the following format, this parameter is constructed: (... OR crawl = 'CC-MAIN-2020-24' OR crawl = 'CC-MAIN-2020-50')
  
 
 **Code explanation**
@@ -23,9 +23,9 @@ The main function that is executed in the Athena_lookup class is the run_lookup(
 * drop_all_tables(self): This function drops tables if there exists any. 
 * create_url_list_table(self): This function creates a new table from the input file, with columns "websiteaddress" and "bvdidnumber".
 * create_ccindex_table(self): This function creates a large table by selecting some columns from the original common crawl database.
-* repair_ccindex_table(self): ?
-* inner_join(self): This function merges the two tables created through create_ccindex_table(self) and create_url_list_table(self) functions. The resulting table contains the address of all the historical subpages of the urls in the input file, for the selected timeframe.   
-* select_subpages(self): The merged table created through the inner_join(self) function is very large. Therefore, we only select the subpages that contain a specific keyword in their website address, and the n_subpages shortest urls. n_subpages is an integer number and is one of the parameters that is determined by the user. 
+* repair_ccindex_table(self): This function is used to make Athena recognize the data partitions on S3. 
+* inner_join(self): This function merges the two tables created through create_ccindex_table(self) and create_url_list_table(self) functions on url. The resulting table contains the address of all the historical subpages of the urls in the input file, for the selected timeframe.   
+* select_subpages(self): The merged table created through the inner_join(self) function is very large. Therefore, we only select the subpages that contain a specific keyword in their website address, and the n_subpages shortest urls. n_subpages is an integer number and is one of the parameters that is determined by the user. For example, if "covid" is in the url_keywords list, the following url will be selected because it contains one of the keywords:'siemens.de/covid-19'. 
 
 *Output example:*\
 ![alt ](output1.png)
